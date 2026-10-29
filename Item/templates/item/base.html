@@ -1,0 +1,37 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}FindIt{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'item/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">Find<span>It.</span></a>
+
+        <ul class="nav-links">
+            <li><a href="{%url 'home'%}">Home</a></li>
+            <li><a href="{%url 'lost_item'%}">Lost Items</a></li>
+            <li><a href="{%url 'found_item'%}">Found Items</a></li>
+            <li><a href="{%url 'about' %}">About</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="/login/" class="login-btn">Login</a>
+            <a href="/register/" class="register-btn">Get Started</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

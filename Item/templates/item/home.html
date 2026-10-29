@@ -1,0 +1,55 @@
+
+{% extends 'item/base.html' %}
+
+{% block title %}Home | FindIt{% endblock %}
+{% load static %}
+{% block content %}
+<section class="hero">
+
+    <div class="hero-content">
+        <p class="hero-label">YOUR CAMPUS LOST & FOUND</p>
+
+        <h1>
+            Lost Something?
+            <br>
+            <span>Let's find it together.</span>
+        </h1>
+
+        <p class="hero-description">
+            Searched every corner of campus?
+            Don't stress about lost belongings.
+            Search reported items or help someone reconnect
+            with something they have lost on campus.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{% url 'lost_item'%}" class="btn btn-primary">
+                Find Lost Items
+            </a>
+
+            <a href="{% url 'found_item'%}" class="btn btn-secondary">
+                Browse Found Items
+            </a>
+        </div>
+
+        <div class="hero-note">
+            <span>✓</span> A simpler way to reconnect with lost belongings
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img
+            src="{% static 'item/images/image1.jpg' %}"
+            alt="Student backpack, books, keys and personal belongings on campus"
+        >
+        <div class="image-badge">
+            <span class="badge-icon">✓</span>
+            <div>
+                <strong>Lost it? Find it.</strong>
+                <p>Your campus community can help.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

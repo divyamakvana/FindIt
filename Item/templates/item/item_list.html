@@ -1,0 +1,75 @@
+
+{% extends "item/base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title }} | FindIt{% endblock title %}
+
+{% block content %}
+<section class="items-page">
+
+    <header class="items-header">
+        <h1>{{ page_title }}</h1>
+        <p>Find what you're looking for on campus.</p>
+    </header>
+
+    <div class="items-actions">
+        <div class="search-box">
+            <input
+                type="text"
+                id="item-search"
+                placeholder="Search by item, category or location..."
+                autocomplete="off"
+                aria-label="Search items"
+            >
+            <div
+                id="search-suggestions"
+                class="search-suggestions"
+            ></div>
+        </div>
+
+        {% if report_type == 'LOST' %}
+            <a href="{% url 'report_lost_item' %}" class="items-report-btn">
+                + Report Lost Item
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="items-grid" id="items-grid">
+        {% for item in items %}
+            <article class="item-card">
+                <div class="item-card-top">
+                    <span class="item-category">
+                        {{ item.get_category_display }}
+                    </span>
+
+                    <span class="item-status">
+                        {{ item.get_status_display }}
+                    </span>
+                </div>
+
+                <h2>{{ item.title }}</h2>
+
+                <p class="item-description">
+                    {{ item.description|truncatewords:20 }}
+                </p>
+
+                <div class="item-location">
+                    <span class="location-icon" aria-hidden="true">📍</span>
+                    <span class="location-name">{{ item.location }}</span>
+                </div>
+            </article>
+        {% empty %}
+            <div class="items-empty">
+                <h2>No items found yet</h2>
+                <p>
+                    There are no items listed here at the moment.
+                    Please check back later.
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+<script src="{% static 'item/js/search.js' %}" defer></script>
+{% endblock content %}

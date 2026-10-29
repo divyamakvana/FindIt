@@ -1,0 +1,64 @@
+{% extends "item/base.html" %}
+
+
+
+{% block title %}{{ page_title }} | FindIt{% endblock %}
+
+{% block content %}
+<section class="report-page">
+    <div class="report-container">
+        <h1>{{ page_title }}</h1>
+        <p>Provide details about the item you lost so it can be easier to identify.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="title">Item Name</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="e.g. Black college backpack"
+                maxlength="100"
+                required
+            >
+
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="ELECTRONICS">Electronics</option>
+                <option value="ACCESSORIES">Accessories</option>
+                <option value="BAGS_WALLETS">Bags & Wallets</option>
+                <option value="DOCUMENTS_ID">Documents & ID Cards</option>
+                <option value="BOOKS_STATIONERY">Books & Stationery</option>
+                <option value="CLOTHING">Clothing</option>
+                <option value="KEYS">Keys</option>
+                <option value="OTHER">Other</option>
+            </select>
+
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="4"
+                placeholder="Describe the item's color, brand, or unique features..."
+                required
+            ></textarea>
+
+            <label for="location">Last Seen Location</label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="e.g. College library, Room 204"
+                maxlength="100"
+                required
+            >
+
+            <button type="submit" class="btn-primary">
+                Submit Lost Item Report
+            </button>
+        </form>
+    </div>
+</section>
+{% endblock %}
